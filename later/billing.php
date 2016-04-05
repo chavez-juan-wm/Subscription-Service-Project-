@@ -2,7 +2,7 @@
     require_once("connect.php");
 
 //    Redirects the page to the payment page when they submit all of the required info in the form
-    $sql = "SELECT * FROM address WHERE userId='".$currentUser3."'";
+    $sql = "SELECT * FROM address WHERE userId='".$currentUser."'";
     $res = $dbh->prepare($sql);
     $res->execute();
     $info = $res->fetch();
@@ -35,7 +35,7 @@
     {
         if ($count == 1)
         {
-            $sql = "UPDATE `shopping_cart`.`address` SET `addressLine1`='".$_POST['addressLine1']."', `addressLine2`='".$_POST['addressLine2']."', `city`='".$_POST['city']."', `state`='".$_POST['state']."', `postcode`='".$_POST['postcode']."', `country`='".$_POST['country']."' WHERE `userId`='".$currentUser3."'";
+            $sql = "UPDATE `shopping_cart`.`address` SET `addressLine1`='".$_POST['addressLine1']."', `addressLine2`='".$_POST['addressLine2']."', `city`='".$_POST['city']."', `state`='".$_POST['state']."', `postcode`='".$_POST['postcode']."', `country`='".$_POST['country']."' WHERE `userId`='".$currentUser."'";
             $res = $dbh->prepare($sql);
             $res->execute();
         }
@@ -44,7 +44,7 @@
             $stmt = $dbh->prepare('INSERT INTO address (userId, addressLine1, addressLine2, city, state, postcode, country) VALUES (:userId, :addressLine1, :addressLine2, :city, :state, :postcode, :country)');
             $result = $stmt->execute(
                 array(
-                    'userId'=>$currentUser3,
+                    'userId'=>$currentUser,
                     'addressLine1'=>$_POST['addressLine1'],
                     'addressLine2'=>$_POST['addressLine2'],
                     'city'=>$_POST['city'],
@@ -66,13 +66,13 @@
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>Billing Information</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
+    <script src="../js/navbar.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 
     <style>
         body
@@ -94,7 +94,7 @@
             </li>
             <li><a href='products.php'><span>Products</span></a></li>
             <li class="active"><a href='cart.php'><span>Cart</span></a></li>
-            <li style="float: right;"><a href='login.php'><span>Profile</span></a></li>
+            <li style="float: right;"><a href='../login.php'><span>Profile</span></a></li>
         </ul>
     </div>
 

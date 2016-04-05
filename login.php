@@ -1,20 +1,6 @@
 <?php
     require_once("connect.php");
 
-    $logout = '';
-
-
-    if($currentUser3 != 1)
-    {
-        $logout = "<form method='post' name='logout'>
-                    <td><button class='btn-primary' type='submit' name='logout' value='1'>Log Out</button></td>
-                </form>";
-        $sql = "SELECT * FROM users WHERE userId = :userId";
-        $res = $dbh->prepare($sql);
-        $res -> execute(array('userId'=>$currentUser3));
-        $users = $res->fetchAll();
-    }
-
     if(@$_POST['signIn'])
     {
         $email = $_POST['email'];
@@ -32,50 +18,17 @@
 
         if ($count == 1)
         {
-            $logout = "<form method='post' name='logout'>
-                    <td><button class='btn-primary' type='submit' name='logout' value='1'>Log Out</button></td>
-                </form>";
-            $check = "You have successfully signed in as: ";
-
-            $currentUser2 = $res->fetch();
-            $currentUser3 = $currentUser2['userId'];
+            $result = $res->fetch();
+            $currentUser = $result['userId'];
 
             $sql = "UPDATE users SET currentUser = :userId WHERE userId = '1'";
             $set = $dbh->prepare($sql);
             $set -> execute(
-                array('userId'=>$currentUser3)
+                array('userId'=>$currentUser)
             );
 
-            $sql = "SELECT * FROM users WHERE email = :email AND password = :password";
-            $res = $dbh->prepare($sql);
-            $res -> execute(
-                array(
-                    'email'=>$email,
-                    'password'=>$password
-                )
-            );
-            $users = $res->fetchAll();
+            header("Location: profile.php");
         }
-
-        else
-        {
-            $check = "Something wasn't correct.";
-        }
-    }
-
-    if(@$_POST['logout'])
-    {
-        $logout = '';
-        $check = "You have successfully signed out.";
-
-        $sql = "UPDATE users SET currentUser = '1' WHERE userId = '1';";
-        $set = $dbh->prepare($sql);
-        $set -> execute();
-
-        $sql = "SELECT * FROM users WHERE userId = '1'";
-        $res = $dbh->prepare($sql);
-        $res -> execute();
-        $users = $res->fetchAll();
     }
 ?>
 
@@ -112,7 +65,7 @@
 <body>
     <div style="z-index: 10" id='cssmenu'>
         <ul>
-            <li><a href='index.html'><span>Home</span></a></li>
+            <li><a href='index.php'><span>Home</span></a></li>
 
             <?php
                 if($who == "Sign In")
@@ -120,14 +73,13 @@
                 else if($who == "Profile")
                     echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
             ?>
-            <li style="float: right"><a href='#'><span>Past Boxes</span></a></li>
+            <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
     <div class="container">
         <div class="card card-container">
             <img id="profile-img" class="profile-img-card" src="pics/profile.png"/>
-            <p><?php echo $check ?></p>
             <form name="signIn" method = "post" class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" class="form-control, inputEmail" name="email" placeholder="Email address" required autofocus>
@@ -137,11 +89,9 @@
             </form>
             <!-- /form -->
 
-
-            <a href="signup.php" class="forgot-password">
-                <p style="margin-bottom: 0">New? Create an Account</p>
+            <a href="reset.php" class="forgot-password">
+                <p style="margin-bottom: 0">Forgot your password?</p>
             </a>
-
         </div><!-- /card-container -->
     </div><!-- /container -->
 </body>

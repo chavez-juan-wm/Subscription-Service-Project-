@@ -21,12 +21,12 @@
 
 //  Gets the current user from the database
     $sql = "SELECT currentUser FROM users WHERE userId = 1";
-    $currentUser = $dbh->prepare($sql);
-    $currentUser -> execute();
-    $currentUser2 = $currentUser->fetch();
-    $currentUser3 = $currentUser2['currentUser'];
+    $stmt = $dbh->prepare($sql);
+    $stmt -> execute();
+    $result = $stmt->fetch();
+    $currentUser = $result['currentUser'];
 
-    if($currentUser3 == 1)
+    if($currentUser == 1)
         $who = "Sign In";
     else
         $who = "Profile";

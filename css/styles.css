@@ -3,15 +3,6 @@ body
     margin: 0;
 }
 
-#bodyText
-{
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    position: relative;
-    z-index: 1;
-}
-
 /*Start of the Products CSS*/
 table
 {

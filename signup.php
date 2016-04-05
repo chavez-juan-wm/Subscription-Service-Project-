@@ -3,7 +3,7 @@
 
     if(@$_POST['addUser'])
     {
-//      Inserts the user's information when signing up
+        // Inserts the user's information when signing up
         if($_POST['firstName'] && $_POST['lastName'] && $_POST['password'] && $_POST['email'])
         {
             $stmt = $dbh->prepare('INSERT INTO users (firstName, lastName, email, password) VALUES (:firstName, :lastName, :email, :password)');
@@ -87,16 +87,15 @@
 
     <div style="z-index: 10" id='cssmenu'>
         <ul>
-            <li><a href='index.html'><span>Home</span></a></li>
-            <li><a href='#'><span>About</span></a>
-                <ul>
-                    <li class='has-sub'><a href='aboutUs.html'><span>About Us</span></a></li>
-                    <li class='has-sub'><a href='FAQ.html'><span>Frequently Asked Questions</span></a></li>
-                </ul>
-            </li>
-            <li><a href='products.php'><span>Products</span></a></li>
-            <li><a href='cart.php'><span>Cart</span></a></li>
-            <li class="active" style="float: right;"><a href='login.php'><span>Profile</span></a></li>
+            <li><a href='index.php'><span>Home</span></a></li>
+
+            <?php
+            if($who == "Sign In")
+                echo '<li class="active" style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
+            else if($who == "Profile")
+                echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+            ?>
+            <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 

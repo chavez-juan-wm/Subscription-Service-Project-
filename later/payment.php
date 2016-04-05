@@ -3,7 +3,7 @@
 
     $sql = "SELECT * FROM payment WHERE userId= :userId";
     $res = $dbh->prepare($sql);
-    $res->execute(array('userId'=>$currentUser3));
+    $res->execute(array('userId'=>$currentUser));
     $info = $res->fetch();
     $count = $res->rowCount();
 
@@ -34,7 +34,7 @@
                     'month'=>$_POST['month'],
                     'year'=>$_POST['year'],
                     'cvCode'=>$_POST['cvCode'],
-                    'userId'=>$currentUser3
+                    'userId'=>$currentUser
                 )
             );
         }
@@ -47,14 +47,14 @@
                     'month'=>$_POST['month'],
                     'year'=>$_POST['year'],
                     'cvCode'=>$_POST['cvCode'],
-                    'userId'=>$currentUser3
+                    'userId'=>$currentUser
                 )
             );
         }
 
         $sql = "SELECT * FROM orders WHERE userId = :userId";
         $res= $dbh->prepare($sql);
-        $res -> execute(array('userId'=>$currentUser3));
+        $res -> execute(array('userId'=>$currentUser));
         $info = $res->fetchAll();
 
         foreach($info as $value)
@@ -81,13 +81,13 @@
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>Payment</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
+    <script src="../js/navbar.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css"/>
 </head>
 
 <body>
@@ -102,7 +102,7 @@
             </li>
             <li><a href='products.php'><span>Products</span></a></li>
             <li class="active"><a href='cart.php'><span>Cart</span></a></li>
-            <li style="float: right;"><a href='login.php'><span>Profile</span></a></li>
+            <li style="float: right;"><a href='../login.php'><span>Profile</span></a></li>
         </ul>
     </div>
 
