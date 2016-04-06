@@ -38,7 +38,7 @@
         else if($who == "Profile")
             echo '<li class="active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
         ?>
-        <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
+        <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
     </ul>
 </div>
 

@@ -27,7 +27,7 @@
             else if($who == "Profile")
                 echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
             ?>
-            <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
+            <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
@@ -35,13 +35,13 @@
         <h1 style="text-align: center; color: #00b7bb; margin-top: 4%">Please enter the email on your account.</h1>
         <h3 align="center" style="margin-top: 4%">We will send you an email with a secure link where you can reset your password.</h3>
 
-        <form method="POST">
-            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+        <form method="post" style="margin-top: 4%">
+            <div style="width: 20%; margin-left: auto; margin-right: auto">
                 <label for="email">Email</label>
-                <input class="form-control" autofocus="autofocus" name="email" type="email" id="email">
+                <input style="height: 40px" class="form-control" autofocus="autofocus" name="email" type="email" id="email" required>
             </div>
-            <div class=" col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
-                <input class="btn btn-primary btn-block" type="submit" value="Send">
+            <div style="width: 20%; margin-left: auto; margin-right: auto; margin-top: 1%">
+                <input style="height: 40px" class="btn btn-primary btn-block" type="submit" value="Send">
             </div>
         </form>
     </div>

@@ -102,7 +102,7 @@
     <div id = bodyText>
         <div class="container">
             <div class="card card-container">
-                <img id="profile-img" class="profile-img-card" src="pics/profile.png"/>
+                <img id="profile-img" class="profile-img-card" src="images/profile.png"/>
 
                 <form name="addUser" method = "post" class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>

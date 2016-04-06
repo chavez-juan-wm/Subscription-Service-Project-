@@ -73,13 +73,13 @@
                 else if($who == "Profile")
                     echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
             ?>
-            <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
+            <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
     <div class="container">
         <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="pics/profile.png"/>
+            <img id="profile-img" class="profile-img-card" src="images/profile.png"/>
             <form name="signIn" method = "post" class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" class="form-control, inputEmail" name="email" placeholder="Email address" required autofocus>
