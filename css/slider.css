@@ -25,9 +25,23 @@
 
 .rslides img {
     margin-top: 25px;
-    height: auto;
-    width: auto;
     border: 0;
+    height: 300px;
+    width: 200px
+}
+
+.rslides h3
+{
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.rslides p
+{
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
 #slider{
@@ -35,7 +49,7 @@
     margin-left: auto;
     margin-right: auto;
     max-height: 400px;
-    height: 250px;
+    height: 400px;
     overflow: hidden;
 }
 /* END OF SLIDER STYLE */
