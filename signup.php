@@ -15,7 +15,7 @@
                     'password'=>$_POST['password'],
                 )
             );
-            header("Location: login.php");
+            header("Location: checkout.php");
         }
     }
 ?>
@@ -95,14 +95,16 @@
             else if($who == "Profile")
                 echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
             ?>
-            <li style="float: right"><a href='#'><span>Subscription Plans</span></a></li>
+            <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
     <div id = bodyText>
+        <h1 style="text-align: center; color: #00b7bb; margin-top: 4%">Create Your Account</h1>
+        <hr/>
         <div class="container">
             <div class="card card-container">
-                <img id="profile-img" class="profile-img-card" src="images/profile.png"/>
+                <img id="profile-img" class="profile-img-card" src="pictures/profile.png"/>
 
                 <form name="addUser" method = "post" class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>

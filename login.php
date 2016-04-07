@@ -79,7 +79,7 @@
 
     <div class="container">
         <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="images/profile.png"/>
+            <img id="profile-img" class="profile-img-card" src="pictures/profile.png"/>
             <form name="signIn" method = "post" class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" class="form-control, inputEmail" name="email" placeholder="Email address" required autofocus>
