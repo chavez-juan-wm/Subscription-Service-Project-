@@ -75,7 +75,7 @@
                     </div>
                 </li>
                 <li>
-                    <div style="width: 45%; margin: 0 auto;">
+                    <div style="width: 49%; margin: 0 auto;">
                         <div style="float: left;">
                             <img src="https://upload.wikimedia.org/wikipedia/en/d/db/The_Maze_Runner_cover.png">
                         </div>
@@ -124,8 +124,8 @@
             </ul>
         </div>
         <div class="container">
-            <h2 style="text-align: center">Time until Next Delivery</h2>
-            <div id="DateCountdown" data-date="2016-04-20 00:00:00" style="width: 500px; height: 125px; padding: 0px; box-sizing: border-box; margin-left: auto; margin-right: auto"></div>
+            <h3 style="text-align: center">Time until Next Delivery</h3>
+            <div id="DateCountdown" data-date="2016-04-20 00:00:00" style="width: 390px; height: 95px; padding: 0; box-sizing: border-box; margin-left: auto; margin-right: auto"></div>
         </div>
         <script>
             $("#DateCountdown").TimeCircles();
