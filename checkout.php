@@ -28,25 +28,23 @@ if(@$_POST['addUser'])
 <script>
     $(document).ready(function()
     {
+        var sel = document.getElementById('plan');
+        var val = localStorage.getItem("plan");
+        var value = val;
+        for(var i = 0, j = sel.options.length; i < j; ++i)
+        {
+            if(sel.options[i].value == val)
+                sel.selectedIndex = i;
+        }
+        document.getElementById("price").innerHTML = "<h2 style='text-align: center; color: firebrick' id='price'>Total Price: $" + value + "</h2>";
+
         $('#plan').on("change", function(){
             var value = document.getElementById("plan").value;
-            document.getElementById("price").innerHTML = "<h2 style='text-align: center; color: firebrick' id='price'>Total Price: $" + value + "</h2>"
+            document.getElementById("price").innerHTML = "<h2 style='text-align: center; color: firebrick' id='price'>Total Price: $" + value + "</h2>";
+            localStorage.setItem("plan", value);
         });
 
     });
-
-    function SelectPlan()
-    {
-        var sel = document.getElementById('plan');
-        var val = the session;
-        for(var i = 0, j = sel.options.length; i < j; ++i)
-        {
-            if(sel.options[i].innerHTML === val) {
-                sel.selectedIndex = i;
-                break;
-            }
-        }
-    }
 
 </script>
 

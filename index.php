@@ -40,6 +40,26 @@
 </head>
 
 <body>
+
+<script>
+    $(document).ready(function(){
+        $("#plan1").click(function()
+        {
+            localStorage.setItem("plan", 19.92);
+        });
+
+        $("#plan2").click(function()
+        {
+            localStorage.setItem("plan", 58.56);
+        });
+
+        $("#plan3").click(function()
+        {
+            localStorage.setItem("plan", 113.52);
+        });
+    });
+</script>
+
     <div style="z-index: 10" id='cssmenu'>
         <ul>
             <li class="active"><a href='index.php'><span>Home</span></a></li>
@@ -60,7 +80,14 @@
     </div>
 
     <div style="text-align: center">
-        <h1 style="text-align: center; color: #00b7bb">Books to Read</h1>
+
+        <h1>The Best Books Delivered To You</h1>
+        <hr>
+        <h3 style="line-height: 36px;">
+             Whatever is the best monthly subscription box for book lovers everywhere! <br>
+            Join thousands of readers and get the <b>absolute best </b>books delivered to your front door.
+        </h3>
+        <h1 style="text-align: center; color: #00b7bb">Past Books Delivered</h1>
         <!-- JQuery Slider [responsiveslides.com] -->
         <div id="slider">
             <ul class="rslides">
@@ -90,6 +117,23 @@
                                 Thomas, a teenager, arrives in a glade at the center of <br> a giant labyrinth. Like the other
                                 youths dumped there before him, <br> he has no memory of his previous life. Together with Teresa, <br>
                                 Thomas tries to convince his cohorts that he knows a way out.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div style="width: 49%; margin: 0 auto;">
+                        <div style="float: left;">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Harry_Potter_and_the_Sorcerer's_Stone.jpg">
+                        </div>
+                        <div style="float: left">
+                            <h3>Harry Potter and the Philosopher's Stone</h3>
+                            <p>
+                                The plot follows Harry Potter, a young wizard who discovers <br> his magical heritage as he
+                                makes close friends and a few <br> enemies in his first year at the Hogwarts School
+                                of Witchcraft <br> and Wizardry. With the help of his friends, Harry faces an <br> attempted
+                                comeback by the dark wizard Lord Voldemort, who killed <br> Harry's parents, but failed to
+                                kill Harry when he was just a year old.
                             </p>
                         </div>
                     </div>
@@ -129,7 +173,7 @@
             </ul>
         </div>
         <div class="container">
-            <h3 style="text-align: center">Time until Next Delivery</h3>
+            <h3 style="text-align: center">Hurry! Spots for the April Box Close In…</h3>
             <div id="DateCountdown" data-date="2016-04-20 00:00:00" style="width: 390px; height: 95px; padding: 0; box-sizing: border-box; margin-left: auto; margin-right: auto"></div>
         </div>
         <script>
@@ -153,7 +197,7 @@
                         <h1 style="color: white; text-align: center"><i>"These books are great!" <br><br> -Vuong</i></h1>
                     </li>
                     <li>
-                        <h1 style="color: white; text-align: center"><i>"This is amazing! Now I can read all of the books I've been meaning to read!" <br><br> -Manny</i></h1>
+                        <h1 style="color: white; text-align: center"><i>"This is amazing! Now I can always have a new book ready for me to read!" <br><br> -Manny</i></h1>
                     </li>
 
                     <li>
@@ -188,9 +232,11 @@
                             <a href="<?php
                             if($step == 1)
                                 echo "checkout.php";
+                            else if($step == 2)
+                                echo "profile.php";
                             else
                                 echo "signup.php";
-                            ?>" class="btn btn-primary">Select</a>
+                            ?>" class="btn btn-primary" id="plan1">Select</a>
                         </div>
                     </div>
                 </div>
@@ -209,9 +255,11 @@
                                 <a href="<?php
                                 if($step == 1)
                                     echo "checkout.php";
+                                else if($step == 2)
+                                    echo "profile.php";
                                 else
                                     echo "signup.php";
-                                ?>" class="btn btn-primary">Select</a>
+                                ?>" class="btn btn-primary" id="plan2">Select</a>
                             </div>
                         </div>
                     </div>
@@ -230,9 +278,11 @@
                             <a href="<?php
                             if($step == 1)
                                 echo "checkout.php";
+                            else if($step == 2)
+                                echo "profile.php";
                             else
                                 echo "signup.php";
-                            ?>" class="btn btn-primary">Select</a>
+                            ?>" class="btn btn-primary" id="plan3">Select</a>
                         </div>
                     </div>
                 </div>

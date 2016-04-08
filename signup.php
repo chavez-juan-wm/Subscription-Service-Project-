@@ -9,8 +9,6 @@
     $repeat = 'placeholder="Repeat Password"';
     $email = 'placeholder="Email"';
 
-    echo $_POST["firstName"];
-
     if(@$_POST['addUser'])
     {
         $message ="";
@@ -34,7 +32,27 @@
                         'password'=>$_POST['password'],
                     )
                 );
-                $_SESSION["counter"] = 0;
+
+                $sql = "SELECT * FROM users WHERE email = :email AND password = :password";
+                $res = $dbh->prepare($sql);
+                $res -> execute(
+                    array(
+                        'email'=>$_POST['email'],
+                        'password'=>$_POST['password']
+                    )
+                );
+                $count = $res->rowCount();
+
+                if ($count == 1)
+                {
+                    $result = $res->fetch();
+                    $currentUser = $result['userId'];
+
+                    $sql = "UPDATE users SET currentUser = :userId WHERE userId = '1'";
+                    $set = $dbh->prepare($sql);
+                    $set->execute(array('userId' => $currentUser));
+                }
+
                 header("Location: checkout.php");
             }
             else
