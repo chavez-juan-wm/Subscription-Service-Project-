@@ -26,6 +26,13 @@
     $result = $stmt->fetch();
     $currentUser = $result['currentUser'];
 
+    //  Gets the current step from the database
+    $sql = "SELECT step FROM users WHERE userId = :userId";
+    $stmt = $dbh->prepare($sql);
+    $stmt -> execute(array("userId"=>$currentUser));
+    $result = $stmt->fetch();
+    $step = $result['step'];
+
     if($currentUser == 1)
         $who = "Sign In";
     else

@@ -48,7 +48,12 @@
             if($who == "Sign In")
                 echo '<li style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
             else if($who == "Profile")
-                echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+            {
+                if($step == 1)
+                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
+                else
+                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+            }
             ?>
             <li style="float: right"><a href='#plan'><span>Subscription Plans</span></a></li>
         </ul>
@@ -145,6 +150,9 @@
             <div id="slider">
                 <ul class="rslides">
                     <li>
+                        <h1 style="color: white; text-align: center"><i>"These books are great!" <br><br> -Vuong</i></h1>
+                    </li>
+                    <li>
                         <h1 style="color: white; text-align: center"><i>"This is amazing! Now I can read all of the books I've been meaning to read!" <br><br> -Manny</i></h1>
                     </li>
 
@@ -177,7 +185,12 @@
                             <span class="plan-price">Total Price: $19.92</span>
                             <span class="plan-status"><br> Renews Automatically</span>
                             <span class="plan-choice"><br>Cancel Anytime!</span><br><br>
-                            <a href="signup.php" class="btn btn-primary">Select</a>
+                            <a href="<?php
+                            if($step == 1)
+                                echo "checkout.php";
+                            else
+                                echo "signup.php";
+                            ?>" class="btn btn-primary">Select</a>
                         </div>
                     </div>
                 </div>
@@ -193,7 +206,12 @@
                                 <span class="plan-price">Total Price: $58.56</span>
                                 <span class="plan-status"><br>Renews Automatically</span>
                                 <span class="plan-choice"><br> Save $1.20!</span> <br><br>
-                                <a href="signup.php" class="btn btn-primary">Select</a>
+                                <a href="<?php
+                                if($step == 1)
+                                    echo "checkout.php";
+                                else
+                                    echo "signup.php";
+                                ?>" class="btn btn-primary">Select</a>
                             </div>
                         </div>
                     </div>
@@ -209,7 +227,12 @@
                             <span class="plan-price">Total Price: $113.52</span>
                             <span class="plan-status"><br>Renews Automatically</span>
                             <span class="plan-choice"><br>Save $6!</span><br><br>
-                            <a href="signup.php" class="btn btn-primary">Select</a>
+                            <a href="<?php
+                            if($step == 1)
+                                echo "checkout.php";
+                            else
+                                echo "signup.php";
+                            ?>" class="btn btn-primary">Select</a>
                         </div>
                     </div>
                 </div>

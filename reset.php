@@ -25,7 +25,12 @@
             if($who == "Sign In")
                 echo '<li class="active" style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
             else if($who == "Profile")
-                echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+            {
+                if($step == 1)
+                    echo '<li class= "active" style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
+                else
+                    echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+            }
             ?>
             <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>

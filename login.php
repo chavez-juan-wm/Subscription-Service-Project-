@@ -3,6 +3,7 @@
 
     if(@$_POST['signIn'])
     {
+        $message = "";
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -27,7 +28,30 @@
                 array('userId'=>$currentUser)
             );
 
-            header("Location: profile.php");
+            //  Gets the current step from the database
+            $sql = "SELECT step FROM users WHERE userId = :userId";
+            $stmt = $dbh->prepare($sql);
+            $stmt -> execute(array("userId"=>$currentUser));
+            $result = $stmt->fetch();
+            $step = $result['step'];
+
+            if($step == 1)
+                header("Location: checkout.php");
+            else
+                header("Location: profile.php");
+        }
+        else
+        {
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $res = $dbh->prepare($sql);
+            $res -> execute(
+                array('email'=>$email));
+            $count = $res->rowCount();
+
+            if($count == 1)
+                $message = "Your password is incorrect.";
+            else
+                $message = "That email has not been registered.";
         }
     }
 ?>
@@ -47,19 +71,6 @@
     <!-- Files for menu bar -->
     <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
-
-    <style>
-        .link
-        {
-            color: dodgerblue;
-            background:none!important;
-            border:none;
-            padding:0!important;
-            font: inherit;
-            cursor: pointer;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -71,15 +82,23 @@
                 if($who == "Sign In")
                     echo '<li class="active" style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
                 else if($who == "Profile")
-                    echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+                {
+                    if($step == 1)
+                        echo '<li class= "active" style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
+                    else
+                        echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+                }
             ?>
             <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
+    <h1 style="text-align: center; color: #00b7bb; margin-top: 4%">Sign In</h1>
+    <hr/>
     <div class="container">
         <div class="card card-container">
             <img id="profile-img" class="profile-img-card" src="pictures/profile.png"/>
+            <span style="color: orangered"><?= $message ?></span>
             <form name="signIn" method = "post" class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" class="form-control, inputEmail" name="email" placeholder="Email address" required autofocus>

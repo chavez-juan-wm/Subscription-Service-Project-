@@ -3,12 +3,7 @@ require_once("connect.php");
 
 if(@$_POST['addUser'])
 {
-    // Inserts the user's information when signing up
-    if($_POST['plan'] && $_POST['state'])
-    {
-        echo $_POST['plan'];
-        echo $_POST['state'];
-    }
+
 }
 ?>
 
@@ -26,17 +21,34 @@ if(@$_POST['addUser'])
     <!-- Files for menu bar -->
     <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
-
-    <style>
-        .card-container.card
-        {
-            max-width: 40%;
-            padding: 40px 40px;
-        }
-    </style>
 </head>
 
 <body>
+
+<script>
+    $(document).ready(function()
+    {
+        $('#plan').on("change", function(){
+            var value = document.getElementById("plan").value;
+            document.getElementById("price").innerHTML = "<h2 style='text-align: center; color: firebrick' id='price'>Total Price: $" + value + "</h2>"
+        });
+
+    });
+
+    function SelectPlan()
+    {
+        var sel = document.getElementById('plan');
+        var val = the session;
+        for(var i = 0, j = sel.options.length; i < j; ++i)
+        {
+            if(sel.options[i].innerHTML === val) {
+                sel.selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+</script>
 
 <div style="z-index: 10" id='cssmenu'>
     <ul>
@@ -44,15 +56,20 @@ if(@$_POST['addUser'])
 
         <?php
         if($who == "Sign In")
-            echo '<li class="active" style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
+            echo '<li style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
         else if($who == "Profile")
-            echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+        {
+            if($step == 1)
+                echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
+            else
+                echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+        }
         ?>
-        <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
+        <li class="active" style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
     </ul>
 </div>
 
-<div id = bodyText>
+<div>
     <h1 style="text-align: center; color: #00b7bb; margin-top: 2.5%">Checkout</h1>
     <hr/>
     <div class="container">
@@ -64,9 +81,9 @@ if(@$_POST['addUser'])
                             <h2>Account Information</h2>
                             <label for="plan">Your Plan</label> <br>
                             <select name="plan" id="plan" form="addUser">
-                                <option value="1">One Month - Total: $19.92</option>
-                                <option value="2">Three Months - Total: $58.56</option>
-                                <option value="3">Six Months - Total: $113.52</option>
+                                <option value="19.92">One Month - Total: $19.92</option>
+                                <option value="58.56">Three Months - Total: $58.56</option>
+                                <option value="113.52">Six Months - Total: $113.52</option>
                             </select>
                         </div>
 
@@ -199,10 +216,12 @@ if(@$_POST['addUser'])
                         </div>
                     </div>
                 </div>
-                <button style="margin-top: 40px" type="submit" name="addUser" value="1" class="btn btn-primary btn-signin">Sign Up</button>
+                <h2 style="text-align: center; color: firebrick" id="price">Total Price: $19.92</h2>
+                <button style="margin-top: 35px" type="submit" name="addUser" value="1" class="btn btn-primary btn-signin">Sign Up</button>
             </form><!-- /form -->
         </div><!-- /card-container -->
     </div><!-- /container -->
+
 </div>
 </body>
 
