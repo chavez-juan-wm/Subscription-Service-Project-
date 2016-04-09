@@ -84,7 +84,7 @@
         <h1>The Best Books Delivered To You</h1>
         <hr>
         <h3 style="line-height: 36px;">
-             Whatever is the best monthly subscription box for book lovers everywhere! <br>
+             <i>Pass the Book</i> is the best monthly subscription box for book lovers everywhere! <br>
             Join thousands of readers and get the <b>absolute best </b>books delivered to your front door.
         </h3>
         <h1 style="text-align: center; color: #00b7bb">Past Books Delivered</h1>

@@ -1,10 +1,56 @@
 <?php
-require_once("connect.php");
+    require_once("connect.php");
 
-if(@$_POST['addUser'])
-{
+    if(@$_POST['addUser'])
+    {
+        if(@$_POST['plan'] && @$_POST['name'] && @$_POST['address1'] && @$_POST['city'] && @$_POST['state'] && @$_POST['country']
+            && @$_POST['zip_code'] && @$_POST['card_name'] && @$_POST['card_number'] && @$_POST['exp_month'] && @$_POST['exp_year'] && @$_POST['cvv'])
+        {
+            echo "Here2";
+            $query = "INSERT INTO billing (userId, addressLine1, addressLine2, city, state, zip_code, country, full_name) VALUES (:userId, :addressLine1, :addressLine2, :city, :state, :postcode, :country, :full_name)";
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(
+                array(
+                    'userId'=>$currentUser,
+                    'addressLine1'=>$_POST['address1'],
+                    'addressLine2'=>$_POST['address2'],
+                    'city'=>$_POST['city'],
+                    'state'=>$_POST['state'],
+                    'postcode'=>$_POST['zip_code'],
+                    'country'=>$_POST['country'],
+                    'full_name'=>$_POST['name']
+                )
+            );
 
-}
+            $query = "INSERT INTO payment (userId, cardNumber, month, year, cvvCode, cardName) VALUES (:userId, :cardNumber, :month, :year, :cvvCode, :name)";
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(
+                array(
+                    'userId'=>$currentUser,
+                    'cardNumber'=>$_POST['card_number'],
+                    'month'=>$_POST['exp_month'],
+                    'year'=>$_POST['exp_year'],
+                    'cvvCode'=>$_POST['cvv'],
+                    'name'=>$_POST['card_name']
+                )
+            );
+
+            if($_POST['plan'] == 19.92)
+                $plan = 1;
+            else if($_POST['plan'] == 58.56)
+                $plan = 2;
+            else
+                $plan = 3;
+
+            echo $plan;
+
+            $query = "UPDATE users SET plan = :plan, step = 2 WHERE userId= :userId";
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(array('plan'=>$plan, 'userId'=>$currentUser));
+
+            header("Location:thankyou.html");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
