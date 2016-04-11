@@ -1,6 +1,18 @@
 <?php
     require_once('connect.php');
 
+    //  Gets the current user's account info from the database
+    $sql = "SELECT * FROM users WHERE userId = :userId";
+    $stmt = $dbh->prepare($sql);
+    $stmt -> execute(array("userId"=>$currentUser));
+    $general = $stmt->fetch();
+
+    //  Gets the current user's billing info from the database
+    $sql = "SELECT * FROM billing WHERE userId = :userId";
+    $stmt = $dbh->prepare($sql);
+    $stmt -> execute(array("userId"=>$currentUser));
+    $billing = $stmt->fetch();
+
     if(@$_POST['logout'])
     {
         $sql = "UPDATE users SET currentUser = '1' WHERE userId = '1';";
@@ -14,7 +26,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Profile</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
@@ -25,6 +37,13 @@
     <!-- Scripts for slider -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="js/responsiveslides.min.js"></script>
+
+    <style>
+        p{
+            font-size: large;
+            line-height: 32px;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,9 +62,46 @@
 </div>
 
 <div>
-    <form method='post' name='logout'>
-        <button class='btn-primary' type='submit' name='logout' value='1'>Log Out</button>
-    </form>
+    <div>
+        <div style="margin-top: 20px; margin-left: 80px; float: left">
+            <img class="img-rounded" src="pictures/<?= $general['profilePic'] ?>" style="width: 300px; height: 280px">
+            <form method='post' name='logout' style="margin-top: 30px">
+                <button class='btn-primary' type='submit' name='logout' value='1'>Log Out</button>
+            </form>
+        </div>
+
+        <div style="float: left;  margin-left: 80px;">
+            <h2>Contact Information</h2>
+            <p>Email: <?= $general['email'] ?> </p>
+
+            <br>
+            <h2>General Information</h2>
+            <p>
+                First Name: <?= $general['firstName'] ?><br>
+                Last Name: <?= $general['lastName'] ?><br>
+                Current Plan: <?php
+                if($general['plan'] == 1)
+                    echo "1 Month Plan";
+                else if($general['plan'] == 2)
+                    echo "3 Month Plan";
+                else
+                    echo "6 Month Plan";?><br>
+                Member Since: <?= $general['created'] ?>
+            </p>
+        </div>
+
+        <div style="float: left; margin-left: 95px">
+            <h2>Billing Information</h2>
+            <p>
+                Shipping Address: <?= $billing['addressLine1'] ?><br>
+                Shipping Address 2: <?= $billing['addressLine2'] ?><br>
+                Shipping City: <?= $billing['city'] ?><br>
+                Shipping Zip Code: <?= $billing['zip_code'] ?><br>
+                Shipping State: <?= $billing['state'] ?><br>
+                Shipping Country: <?= $billing['country'] ?><br>
+            </p>
+        </div>
+    </div>
 </div>
 </body>
 </html>

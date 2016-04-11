@@ -23,7 +23,7 @@
 
             if($count == 0)
             {
-                $stmt = $dbh->prepare('INSERT INTO users (firstName, lastName, email, password) VALUES (:firstName, :lastName, :email, :password)');
+                $stmt = $dbh->prepare('INSERT INTO users (firstName, lastName, email, password, created) VALUES (:firstName, :lastName, :email, :password, NOW())');
                 $result = $stmt->execute(
                     array(
                         'firstName'=>$_POST['firstName'],

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Pass the Book</title>
 
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -75,7 +75,7 @@
                     echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
             }
             ?>
-            <li style="float: right"><a href='#plan'><span>Subscription Plans</span></a></li>
+            <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
     </div>
 
@@ -84,7 +84,7 @@
         <h1>The Best Books Delivered To You</h1>
         <hr>
         <h3 style="line-height: 36px;">
-             <i>Pass the Book</i> is the best monthly subscription box for book lovers everywhere! <br>
+             <i style="color: green">Pass the Book</i> is the best monthly subscription box for book lovers everywhere! <br>
             Join thousands of readers and get the <b>absolute best </b>books delivered to your front door.
         </h3>
         <h1 style="text-align: center; color: #00b7bb">Past Books Delivered</h1>
@@ -203,9 +203,11 @@
                     <li>
                         <h1 style="color: white; text-align: center"><i>"You guys make my month, I love having a book to read!" <br><br> -Carlos</i></h1>
                     </li>
-
                     <li>
                         <h1 style="color: white; text-align: center"><i>"I'll be a member forever because there are too many books to read!" <br><br> -Austin</i></h1>
+                    </li>
+                    <li>
+                        <h1 style="color: white; text-align: center"><i>"I've loved every single book I've gotten! Thank you!" <br><br> -Kyle</i></h1>
                     </li>
                 </ul>
             </div>

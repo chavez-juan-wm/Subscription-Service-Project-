@@ -48,7 +48,7 @@
             $stmt = $dbh->prepare($query);
             $stmt->execute(array('plan'=>$plan, 'userId'=>$currentUser));
 
-            header("Location:thankyou.html");
+            header("Location:thankyou.php");
         }
     }
 ?>
@@ -204,7 +204,7 @@
                             <div style="float: left">
                                 <br><br><br><label for="country">Shipping Country</label> <br>
                                 <select id="country" name="country">
-                                    <option value="us">United States</option>
+                                    <option value="US">United States</option>
                                 </select>
 
                                 <br><br><label for="address2">Shipping Address 2</label>
