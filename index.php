@@ -1,4 +1,27 @@
-<?php require_once('connect.php')?>
+<?php
+require_once('connect.php');
+
+function send_mail($email,$message,$subject)
+{
+    require_once('mailer/class.phpmailer.php');
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->SMTPDebug  = 0;
+    $mail->SMTPAuth   = true;
+    $mail->SMTPSecure = "ssl";
+    $mail->Host       = "smtp.gmail.com";
+    $mail->Port       = 465;
+    $mail->AddAddress($email);
+    $mail->Username="vuong.do@west-mec.org";
+    $mail->Password="dK3vAT15";
+    $mail->SetFrom('vuong.do@west-mec.org','Test');
+    $mail->AddReplyTo("vuong.do@west-mec.org","Test");
+    $mail->Subject    = $subject;
+    $mail->MsgHTML($message);
+    $mail->Send();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -35,6 +58,11 @@
         {
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+        .intro
+        {
+            font-size: x-large;
+            line-height: 45px;
         }
     </style>
 </head>
@@ -83,11 +111,11 @@
 
         <h1>The Best Books Delivered To You</h1>
         <hr>
-        <h3 style="line-height: 36px;">
+        <p class="intro">
              <i style="color: green">Pass the Book</i> is the best monthly subscription box for book lovers everywhere! <br>
-            Join thousands of readers and get the <b>absolute best </b>books delivered to your front door.
-        </h3>
-        <h1 style="text-align: center; color: #00b7bb">Past Books Delivered</h1>
+            Join thousands of readers today and get the <b>absolute best </b>books delivered to your front door.
+        </p>
+        <h1 style="text-align: center; color: #00b7bb; margin-top: 43px">Past Books Delivered</h1>
         <!-- JQuery Slider [responsiveslides.com] -->
         <div id="slider">
             <ul class="rslides">
@@ -122,7 +150,7 @@
                     </div>
                 </li>
                 <li>
-                    <div style="width: 49%; margin: 0 auto;">
+                    <div style="width: 51%; margin: 0 auto;">
                         <div style="float: left;">
                             <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Harry_Potter_and_the_Sorcerer's_Stone.jpg">
                         </div>
@@ -130,10 +158,10 @@
                             <h3>Harry Potter and the Philosopher's Stone</h3>
                             <p>
                                 The plot follows Harry Potter, a young wizard who discovers <br> his magical heritage as he
-                                makes close friends and a few <br> enemies in his first year at the Hogwarts School
-                                of Witchcraft <br> and Wizardry. With the help of his friends, Harry faces an <br> attempted
-                                comeback by the dark wizard Lord Voldemort, who killed <br> Harry's parents, but failed to
-                                kill Harry when he was just a year old.
+                                makes close friends and a few enemies in <br> his first year at the Hogwarts School
+                                of Witchcraft and Wizardry. With the <br> help of his friends, Harry faces an attempted
+                                comeback by the dark <br> wizard Lord Voldemort, who killed Harry's parents, but failed to
+                                kill <br> Harry when he was just a year old.
                             </p>
                         </div>
                     </div>

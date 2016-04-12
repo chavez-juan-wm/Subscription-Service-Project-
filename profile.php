@@ -40,7 +40,7 @@
 
     <style>
         p{
-            font-size: large;
+            font-size: medium;
             line-height: 32px;
         }
     </style>
@@ -70,12 +70,12 @@
             </form>
         </div>
 
-        <div style="float: left;  margin-left: 80px;">
-            <h2>Contact Information</h2>
+        <div style="float: left;  margin-left: 12.5%;">
+            <h3>Contact Information</h3>
             <p>Email: <?= $general['email'] ?> </p>
 
             <br>
-            <h2>General Information</h2>
+            <h3>General Information</h3>
             <p>
                 First Name: <?= $general['firstName'] ?><br>
                 Last Name: <?= $general['lastName'] ?><br>
@@ -91,7 +91,7 @@
         </div>
 
         <div style="float: left; margin-left: 95px">
-            <h2>Billing Information</h2>
+            <h3>Billing Information</h3>
             <p>
                 Shipping Address: <?= $billing['addressLine1'] ?><br>
                 Shipping Address 2: <?= $billing['addressLine2'] ?><br>
