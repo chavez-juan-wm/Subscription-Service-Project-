@@ -1,7 +1,7 @@
 <?php
     // User name and password for authentication
     $username = 'JMC';
-    $password = '2229';
+    $password = '2228';
 
     if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
         ($_SERVER['PHP_AUTH_USER'] != $username) || ($_SERVER['PHP_AUTH_PW'] != $password))
@@ -9,7 +9,7 @@
     // The user name/password are incorrect so send the authentication headers
         header('HTTP/1.1 401 Unauthorized');
         header('WWW-Authenticate: Basic realm= Pass the Book');
-        exit('<h2>Guitar Wars</h2>Sorry, you must enter a valid user name and password to ' .
+        exit('<h2>Pass the Book</h2>Sorry, you must enter a valid user name and password to ' .
             'access this page.');
     }
 
@@ -68,7 +68,7 @@
 <div style="text-align: center">
 
     <h1 style="text-align: center; color: #00b7bb">Pass the Book - User Administration</h1>
-    <hr>
+    <hr><br>
 
     <table class="table" align="center">
         <thead>
@@ -86,8 +86,11 @@
                     <td><?= $user['lastName']; ?></td>
                     <td><?= $user['email']; ?></td>
                     <td><?= $user['plan']; ?></td>
-                    <td><a href="remove.php?id=' . $user['userId'] . '&amp;date=' . $result['date'] .
-        '&amp;name=' . $result['firstName'] . '">Remove</a></td>
+                    <?php
+                        echo '<td><a href="remove.php?id=' . $user['userId'] . '&amp;date=' . $user['created'] .
+                            '&amp;name=' . $user['firstName'] . " " . $user['lastName'] . '">Remove</a>';
+                    ?>
+
                 </tr>
             <?php } ?>
         </tbody>
