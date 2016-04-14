@@ -108,7 +108,7 @@ $message = "";
             </form>
             <!-- /form -->
 
-            <a href="reset.php" class="forgot-password">
+            <a href="resetEmail.php" class="forgot-password">
                 <p style="margin-bottom: 0">Forgot your password?</p>
             </a>
         </div><!-- /card-container -->

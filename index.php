@@ -1,27 +1,4 @@
-<?php
-require_once('connect.php');
-
-function send_mail($email,$message,$subject)
-{
-    require_once('mailer/class.phpmailer.php');
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->SMTPDebug  = 0;
-    $mail->SMTPAuth   = true;
-    $mail->SMTPSecure = "ssl";
-    $mail->Host       = "smtp.gmail.com";
-    $mail->Port       = 465;
-    $mail->AddAddress($email);
-    $mail->Username="vuong.do@west-mec.org";
-    $mail->Password="dK3vAT15";
-    $mail->SetFrom('vuong.do@west-mec.org','Test');
-    $mail->AddReplyTo("vuong.do@west-mec.org","Test");
-    $mail->Subject    = $subject;
-    $mail->MsgHTML($message);
-    $mail->Send();
-}
-
-?>
+<?php require_once('connect.php'); ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>

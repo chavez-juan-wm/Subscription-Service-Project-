@@ -1,12 +1,31 @@
 <?php
     require_once("connect.php");
 
+    function send_mail($email,$message,$subject)
+    {
+        require_once('mailer/class.phpmailer.php');
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->SMTPDebug  = 0;
+        $mail->SMTPAuth   = true;
+        $mail->SMTPSecure = "ssl";
+        $mail->Host       = "smtp.gmail.com";
+        $mail->Port       = 465;
+        $mail->AddAddress($email);
+        $mail->Username="juan.chavez@west-mec.org";
+        $mail->Password="8Bc9ZZ15";
+        $mail->SetFrom('juan.chavez@west-mec.org','Pass the Book');
+        $mail->AddReplyTo("juan.chavez@west-mec.org","Pass the Book");
+        $mail->Subject    = $subject;
+        $mail->MsgHTML($message);
+        $mail->Send();
+    }
+
     if(@$_POST['addUser'])
     {
         if(@$_POST['plan'] && @$_POST['name'] && @$_POST['address1'] && @$_POST['city'] && @$_POST['state'] && @$_POST['country']
             && @$_POST['zip_code'] && @$_POST['card_name'] && @$_POST['card_number'] && @$_POST['exp_month'] && @$_POST['exp_year'] && @$_POST['cvv'])
         {
-            echo "Here2";
             $query = "INSERT INTO billing (userId, addressLine1, addressLine2, city, state, zip_code, country, full_name) VALUES (:userId, :addressLine1, :addressLine2, :city, :state, :postcode, :country, :full_name)";
             $stmt = $dbh->prepare($query);
             $stmt->execute(
@@ -42,11 +61,16 @@
             else
                 $plan = 3;
 
-            echo $plan;
-
             $query = "UPDATE users SET plan = :plan, step = 2 WHERE userId= :userId";
             $stmt = $dbh->prepare($query);
             $stmt->execute(array('plan'=>$plan, 'userId'=>$currentUser));
+
+            $query = "SELECT * FROM users WHERE userId= :userId";
+            $stmt = $dbh->prepare($query);
+            $stmt->execute(array('userId'=>$currentUser));
+            $result = $stmt->fetch();
+            $email = $result['email'];
+            send_mail($email, "Thank you for signing up! We are pleased to have another book lover join our family. We hope you enjoy our service!", "New Account");
 
             header("Location:thankyou.php");
         }
