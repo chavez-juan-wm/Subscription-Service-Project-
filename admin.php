@@ -85,10 +85,12 @@
                     <td><?= $user['firstName']; ?></td>
                     <td><?= $user['lastName']; ?></td>
                     <td><?= $user['email']; ?></td>
-                    <td><?= $user['plan']; ?></td>
+                    <td style="padding-left: 18px;"><?= $user['plan']; ?></td>
                     <?php
                         echo '<td><a href="remove.php?id=' . $user['userId'] . '&amp;date=' . $user['created'] .
                             '&amp;name=' . $user['firstName'] . " " . $user['lastName'] . '">Remove</a>';
+
+                        echo ' / <a href="edit.php?id=' . $user['userId'] .'">Edit</a></td>';
                     ?>
 
                 </tr>

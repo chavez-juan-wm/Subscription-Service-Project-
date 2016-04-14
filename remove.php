@@ -80,7 +80,7 @@
         }
         else
         {
-            $message = "The high score was not removed.";
+            $message = "The user was not removed.";
         }
     }
 
