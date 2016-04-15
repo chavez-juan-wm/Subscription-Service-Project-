@@ -26,7 +26,7 @@
         if(@$_POST['plan'] && @$_POST['name'] && @$_POST['address1'] && @$_POST['city'] && @$_POST['state'] && @$_POST['country']
             && @$_POST['zip_code'] && @$_POST['card_name'] && @$_POST['card_number'] && @$_POST['exp_month'] && @$_POST['exp_year'] && @$_POST['cvv'])
         {
-            $query = "INSERT INTO billing (userId, addressLine1, addressLine2, city, state, zip_code, country, full_name) VALUES (:userId, :addressLine1, :addressLine2, :city, :state, :postcode, :country, :full_name)";
+            $query = "INSERT INTO shipping (userId, addressLine1, addressLine2, city, state, zip_code, country, full_name) VALUES (:userId, :addressLine1, :addressLine2, :city, :state, :postcode, :country, :full_name)";
             $stmt = $dbh->prepare($query);
             $stmt->execute(
                 array(

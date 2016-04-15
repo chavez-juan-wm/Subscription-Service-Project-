@@ -7,11 +7,11 @@
     $stmt -> execute(array("userId"=>$currentUser));
     $general = $stmt->fetch();
 
-    //  Gets the current user's billing info from the database
-    $sql = "SELECT * FROM billing WHERE userId = :userId";
+    //  Gets the current user's shipping info from the database
+    $sql = "SELECT * FROM shipping WHERE userId = :userId";
     $stmt = $dbh->prepare($sql);
     $stmt -> execute(array("userId"=>$currentUser));
-    $billing = $stmt->fetch();
+    $shipping = $stmt->fetch();
 
     if(@$_POST['logout'])
     {
@@ -91,14 +91,14 @@
         </div>
 
         <div style="float: left; margin-left: 95px">
-            <h3>Billing Information</h3>
+            <h3>Shipping Information</h3>
             <p>
-                Shipping Address: <?= $billing['addressLine1'] ?><br>
-                Shipping Address 2: <?= $billing['addressLine2'] ?><br>
-                Shipping City: <?= $billing['city'] ?><br>
-                Shipping Zip Code: <?= $billing['zip_code'] ?><br>
-                Shipping State: <?= $billing['state'] ?><br>
-                Shipping Country: <?= $billing['country'] ?><br>
+                Shipping Address: <?= $shipping['addressLine1'] ?><br>
+                Shipping Address 2: <?= $shipping['addressLine2'] ?><br>
+                Shipping City: <?= $shipping['city'] ?><br>
+                Shipping Zip Code: <?= $shipping['zip_code'] ?><br>
+                Shipping State: <?= $shipping['state'] ?><br>
+                Shipping Country: <?= $shipping['country'] ?><br>
             </p>
         </div>
     </div>

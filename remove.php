@@ -70,8 +70,8 @@
             $stmt = $dbh->prepare($query);
             $stmt->execute(array('id'=>$id));
 
-            // Delete the user data from the billing table
-            $query = "DELETE FROM billing WHERE userId = :id LIMIT 1";
+            // Delete the user data from the shipping table
+            $query = "DELETE FROM shipping WHERE userId = :id LIMIT 1";
             $stmt = $dbh->prepare($query);
             $stmt->execute(array('id'=>$id));
 
