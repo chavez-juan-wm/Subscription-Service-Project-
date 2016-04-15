@@ -1,21 +1,8 @@
 <?php
-    // User name and password for authentication
-    $username = 'JMC';
-    $password = '2228';
-
-    if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ||
-        ($_SERVER['PHP_AUTH_USER'] != $username) || ($_SERVER['PHP_AUTH_PW'] != $password))
-    {
-    // The user name/password are incorrect so send the authentication headers
-        header('HTTP/1.1 401 Unauthorized');
-        header('WWW-Authenticate: Basic realm= Pass the Book');
-        exit('<h2>Pass the Book</h2>Sorry, you must enter a valid user name and password to ' .
-            'access this page.');
-    }
-
+    require_once("authorize.php");
     require_once("connect.php");
 
-    $query = "SELECT * FROM users WHERE userId != 1";
+    $query = "SELECT * FROM users";
     $stmt = $dbh->prepare($query);
     $stmt->execute();
     $users = $stmt->fetchAll();
@@ -32,13 +19,16 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
 
     <style>
         td
         {
             text-align: left;
+        }
+        table
+        {
+            table-layout: fixed;
         }
     </style>
 
@@ -55,11 +45,21 @@
             echo '<li style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
         else if($who == "Profile")
         {
-            if($step == 1)
-                echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
-            else
-                echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
-        }
+             if($step == 1)
+                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a>';
+                else
+                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a>';
+            ?>
+                <ul>
+                    <li style="background-color: black; width: 60%">
+                    <form method="post" name="logout" action="profile.php">
+                        <input class="btn-link" style="color: white" type="submit" value="Log Out" name="logout">
+                    </form>
+                    </li>
+                </ul>
+                </li>
+            <?php
+            }
         ?>
         <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
     </ul>
@@ -85,7 +85,18 @@
                     <td><?= $user['firstName']; ?></td>
                     <td><?= $user['lastName']; ?></td>
                     <td><?= $user['email']; ?></td>
-                    <td style="padding-left: 18px;"><?= $user['plan']; ?></td>
+                    <td>
+                        <?php
+                            if($user['plan'] == 1)
+                                echo "One Month Plan";
+                            else if($user['plan'] == 2)
+                                echo "Three Months Plan";
+                            else if($user['plan'] == 3)
+                                echo "Six Months Plan";
+                            else
+                                echo "No Plan";
+                        ?>
+                    </td>
                     <?php
                         echo '<td><a href="remove.php?id=' . $user['userId'] . '&amp;date=' . $user['created'] .
                             '&amp;name=' . $user['firstName'] . " " . $user['lastName'] . '">Remove</a>';

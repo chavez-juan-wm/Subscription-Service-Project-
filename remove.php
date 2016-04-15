@@ -1,4 +1,4 @@
-<?php require_once("connect.php")?>
+<?php require_once("authorize.php"); require_once("connect.php")?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -10,7 +10,6 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
 
 </head>
@@ -24,10 +23,20 @@
                 echo '<li style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
             else if($who == "Profile")
             {
-                if($step == 1)
-                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
+                 if($step == 1)
+                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a>';
                 else
-                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
+                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a>';
+            ?>
+                <ul>
+                    <li style="background-color: black; width: 60%">
+                    <form method="post" name="logout" action="profile.php">
+                        <input class="btn-link" style="color: white" type="submit" value="Log Out" name="logout">
+                    </form>
+                    </li>
+                </ul>
+                </li>
+            <?php
             }
             ?>
             <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
@@ -42,7 +51,8 @@
     {
         // Grab the user data from the GET
         $id = $_GET['id'];
-        $date = $_GET['date'];
+        $created = $_GET['date'];
+        $date = strtotime($created);
         $name = $_GET['name'];
     }
     else if (isset($_POST['id']) && isset($_POST['name']))
@@ -90,7 +100,7 @@
     <div>
         <?php
         echo '<p style="margin-left: 457px">Are you sure you want to delete the following user?</p>';
-        echo '<p style="margin-left: 457px"><strong>Name: </strong>' . $name . '<br /><strong>Date Created: </strong>' . $date;
+        echo '<p style="margin-left: 457px"><strong>Name: </strong>' . $name . '<br /><strong>Date Created: </strong>' . date('m-d-Y',$date);
         echo '<form style="margin-left: 457px" method="post" action="remove.php">';
         echo '<input type="radio" name="confirm" value="Yes" /> Yes ';
         echo '<input type="radio" name="confirm" value="No" checked="checked" /> No <br />';

@@ -89,7 +89,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
 </head>
 
@@ -126,11 +125,21 @@
             echo '<li style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
         else if($who == "Profile")
         {
-            if($step == 1)
-                echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
-            else
-                echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
-        }
+             if($step == 1)
+                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a>';
+                else
+                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a>';
+            ?>
+                <ul>
+                    <li style="background-color: black; width: 60%">
+                    <form method="post" name="logout" action="profile.php">
+                        <input class="btn-link" style="color: white" type="submit" value="Log Out" name="logout">
+                    </form>
+                    </li>
+                </ul>
+                </li>
+            <?php
+            }
         ?>
         <li class="active" style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
     </ul>
@@ -250,15 +259,15 @@
                                 <br><br>
                                 <label for="exp_month">Exp. Month</label> <br>
                                 <select id="exp_month" name="exp_month" form="addUser" required>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
                                     <option value="10">October</option>
                                     <option value="11">November</option>
                                     <option value="12">December</option>

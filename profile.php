@@ -15,10 +15,11 @@
 
     if(@$_POST['logout'])
     {
-        $sql = "UPDATE users SET currentUser = '1' WHERE userId = '1';";
-        $set = $dbh->prepare($sql);
-        $set -> execute();
-
+        if (isset($_COOKIE['user']))
+        {
+            unset($_COOKIE['user']);
+            setcookie('user', '', time() - 3600, '/'); // empty value and old timestamp
+        }
         header("Location: login.php");
     }
 ?>
@@ -31,7 +32,6 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
 
     <!-- Scripts for slider -->
@@ -81,12 +81,16 @@
                 Last Name: <?= $general['lastName'] ?><br>
                 Current Plan: <?php
                 if($general['plan'] == 1)
-                    echo "1 Month Plan";
+                    echo "One Month Plan";
                 else if($general['plan'] == 2)
-                    echo "3 Month Plan";
+                    echo "Three Months Plan";
+                else if($general['plan'] == 3)
+                    echo "Six Months Plan";
                 else
-                    echo "6 Month Plan";?><br>
-                Member Since: <?= $general['created'] ?>
+                    echo "No Plan"; ?>
+                <br>
+                Member Since: <?php $date = strtotime($general['created']);
+                echo date('m-d-Y',$date); ?>
             </p>
         </div>
 

@@ -20,13 +20,9 @@ $message = "";
         if ($count == 1)
         {
             $result = $res->fetch();
-            $currentUser = $result['userId'];
-
-            $sql = "UPDATE users SET currentUser = :userId WHERE userId = '1'";
-            $set = $dbh->prepare($sql);
-            $set -> execute(
-                array('userId'=>$currentUser)
-            );
+            $cookie_value = $result['userId'];
+            setcookie("user", $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+            $currentUser = $_COOKIE['user'];
 
             //  Gets the current step from the database
             $sql = "SELECT step FROM users WHERE userId = :userId";
@@ -69,7 +65,6 @@ $message = "";
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <!-- Files for menu bar -->
-    <script src="js/navbar.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
 </head>
 
@@ -83,11 +78,21 @@ $message = "";
                     echo '<li class="active" style="float: right;"><a href="login.php"><span>Sign In</span></a></li>';
                 else if($who == "Profile")
                 {
-                    if($step == 1)
-                        echo '<li class= "active" style="float: right;"><a href="checkout.php"><span>Profile</span></a></li>';
-                    else
-                        echo '<li class= "active" style="float: right;"><a href="profile.php"><span>Profile</span></a></li>';
-                }
+                     if($step == 1)
+                    echo '<li style="float: right;"><a href="checkout.php"><span>Profile</span></a>';
+                else
+                    echo '<li style="float: right;"><a href="profile.php"><span>Profile</span></a>';
+            ?>
+                <ul>
+                    <li style="background-color: black; width: 60%">
+                    <form method="post" name="logout" action="profile.php">
+                        <input class="btn-link" style="color: white" type="submit" value="Log Out" name="logout">
+                    </form>
+                    </li>
+                </ul>
+                </li>
+            <?php
+            }
             ?>
             <li style="float: right"><a href='index.php#plan'><span>Subscription Plans</span></a></li>
         </ul>
