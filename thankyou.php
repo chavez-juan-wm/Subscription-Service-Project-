@@ -16,6 +16,13 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="js/responsiveslides.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/slider.css">
+
+    <style>
+        p
+        {
+            font-size: x-large;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,8 +60,15 @@
 
     <h1 style="text-align: center; color: #00b7bb">Welcome to our Family!</h1>
     <hr>
-    <h3 style="line-height: 36px;">
+    <p style="line-height: 36px; margin-bottom: 30px">
+        Thank you for choosing our service! We are delighted to welcome another member that loves to read <br> books as much as us.
+        We hope that you will love every book you receive, and for those who don't necessarily <br> like our service you can always cancel your plan anytime.
+        And remember: <i>One World, Many Stories<i>
+    </p>
 
-    </h3>
+    <div style="background-color: #fbfbfd; width: 100%; height: 100%">
+        <img src="pictures/PasstheBook.png" style="width: 42%; margin-top: 20px">
+    </div>
+
 </body>
 </html>

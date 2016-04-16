@@ -22,6 +22,11 @@
         }
         header("Location: login.php");
     }
+
+    if(@$_POST['edit'])
+    {
+        header("Location: editPersonal.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +72,7 @@
             <img class="img-rounded" src="pictures/<?= $general['profilePic'] ?>" style="width: 300px; height: 280px">
             <form method='post' name='logout' style="margin-top: 30px">
                 <button class='btn-primary' type='submit' name='logout' value='1'>Log Out</button>
+                <button class='btn-primary' type='submit' name='edit' value='5'>Edit Profile</button>
             </form>
         </div>
 
