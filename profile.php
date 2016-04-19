@@ -24,9 +24,7 @@
     }
 
     if(@$_POST['edit'])
-    {
-        header("Location: editPersonal.php");
-    }
+        header("Location: edit.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,4 @@
 <?php
-    require_once("authorize.php");
     require_once("connect.php");
 
     $query = "SELECT * FROM users";
@@ -69,6 +68,7 @@
 
     <h1 style="text-align: center; color: #00b7bb">Pass the Book - User Administration</h1>
     <hr><br>
+    <div style="text-align: left"><?php require_once("authorize.php"); ?></div>
 
     <table class="table" align="center">
         <thead>

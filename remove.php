@@ -1,4 +1,4 @@
-<?php require_once("authorize.php"); require_once("connect.php")?>
+<?php require_once("connect.php"); ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -44,6 +44,7 @@
     </div>
     <h1 style="text-align: center; color: #00b7bb">Pass the Book - Remove a User</h1>
     <hr><br>
+    <?php require_once("authorize.php"); ?>
 
     <?php
     $message = "";

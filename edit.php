@@ -1,4 +1,6 @@
-<?php require_once("authorize.php"); require_once("connect.php")?>
+<?php
+    require_once("connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -59,12 +61,24 @@
 <hr>
 
 <?php
-    $message = "<div style='margin-left: 30px;'>
-    <p style=\"margin-top: 20px\"><a href= \"admin.php\">&lt;&lt; Back to admin page</a></p>
-</div>";
-    if (isset($_GET['id']))
+    if (isset($_GET['id']) || $currentUser != 0)
     {
-        $id = $_GET['id'];
+        if (isset($_GET['id']))
+        {
+            require_once("authorize.php");
+            $id = $_GET['id'];
+            $message = "<div style='margin-left: 30px;'>
+    <p style=\"margin-top: 20px\"><a href= \"admin.php\">&lt;&lt; Go Back</a></p>
+</div>";
+            $purpose = "Admin";
+        }
+        else if($currentUser != 0)
+        {
+            $id = $currentUser;
+            $message = "<div style='margin-left: 30px;'>
+    <p style=\"margin-top: 20px\"><a href= \"profile.php\">&lt;&lt; Go Back</a></p>
+</div>";
+        }
 
         //  Gets the user's account info from the database
         $sql = "SELECT * FROM users WHERE userId = :userId";
@@ -87,7 +101,6 @@
             $plan = 113.52;
         else
             $plan = 0;
-
 
         //  Gets the user's shipping info from the database
         $sql = "SELECT * FROM shipping WHERE userId = :userId";
@@ -114,13 +127,11 @@
         $exp_year = $billing['year'];
         $month = $billing['month'];
     }
-
     else if (isset($_POST['id']))
         $id = $_POST['id'];
-
     else
         $message = "<div style='margin-left: 457px;'>
-    <p style=\"margin-top: 20px\">Sorry, no user was specified to edit. <br><br> <a href= \"admin.php\">&lt;&lt; Back to admin page</a></p> </div>";
+    <p style=\"margin-top: 20px\">Sorry, no user was specified to edit. <br><br></div>";
 
     if (isset($_POST['submit']))
     {
@@ -167,8 +178,16 @@
             'id'=>$id
         ));
         // Confirm success with the user
-        $message = "<div style='margin-left: 457px;'>
-    <p style=\"margin-top: 20px\">$name was successfully edited. <br><br> <a href= \"admin.php\">&lt;&lt; Back to admin page</a> </p></div>";
+        if(@$purpose == "Admin")
+        {
+            $message = "<div style='margin-left: 457px;'>
+    <p style=\"margin-top: 20px\">The account was successfully edited. <br><br> <a href= \"admin.php\">&lt;&lt; Go Back</a> </p></div>";
+        }
+        else
+        {
+            $message = "<div style='margin-left: 457px;'>
+    <p style=\"margin-top: 20px\">Your account was successfully edited. <br><br> <a href= \"profile.php\">&lt;&lt; Go Back</a> </p></div>";
+        }
     }
 
     else if (isset($id))

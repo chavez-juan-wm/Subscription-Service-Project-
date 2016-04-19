@@ -44,7 +44,7 @@
 </head>
 
 <body>
-
+<!--Gets the plan that the user selected-->
 <script>
     $(document).ready(function(){
         $("#plan1").click(function()
@@ -63,7 +63,7 @@
         });
     });
 </script>
-
+<!--The Nav bar-->
     <div style="z-index: 10" id='cssmenu'>
         <ul>
             <li class="active"><a href='index.php'><span>Home</span></a></li>
@@ -102,7 +102,7 @@
             Join thousands of readers today and get the <b>absolute best </b>books delivered to your front door.
         </p>
         <h1 style="text-align: center; color: #00b7bb; margin-top: 43px">Past Books Delivered</h1>
-        <!-- JQuery Slider [responsiveslides.com] -->
+        <!-- Start of the slider with the book image and description -->
         <div id="slider">
             <ul class="rslides">
                 <li>
@@ -186,9 +186,10 @@
                 </li>
             </ul>
         </div>
+        <!-- The count down for the next delivery-->
         <div class="container">
             <h3 style="text-align: center">Hurry! Spots for the April Box Close In…</h3>
-            <div id="DateCountdown" data-date="2016-04-20 00:00:00" style="width: 390px; height: 95px; padding: 0; box-sizing: border-box; margin-left: auto; margin-right: auto"></div>
+            <div id="DateCountdown" data-date="2016-04-24 00:00:00" style="width: 390px; height: 95px; padding: 0; box-sizing: border-box; margin-left: auto; margin-right: auto"></div>
         </div>
         <script>
             $("#DateCountdown").TimeCircles();
@@ -204,7 +205,7 @@
         <div class="secondDiv"><img src="pictures/Books.jpg" style="width: 100%; height: 290px;"></div>
         <div class="information" style="width: 100%; height: 290px;">
             <h1 style="text-align: center; color: white"><b>What Readers Say</b></h1>
-
+            <!-- Start of the user quotes -->
             <div id="slider">
                 <ul class="rslides">
                     <li>
